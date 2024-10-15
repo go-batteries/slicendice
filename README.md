@@ -7,9 +7,11 @@ A collection of commonly used higher order functions and data structures in go, 
 - [x] Reduce
 - [x] Some
 - [x] Every
-- [ ] Take
-- [ ] Permute
-- [ ] Combine
+- [x] Take
+- [x] Permute
+- [x] NextPermute
+- [x] PermuteOrdered
+- [x] Combine
 
 Extra datastrcutures:
 
