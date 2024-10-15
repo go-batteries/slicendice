@@ -53,3 +53,20 @@ func Test_CombineK(t *testing.T) {
 	assert.Equal(t, 10, len(combinations))
 	assert.Equal(t, expected, combinations)
 }
+
+func Test_Reverse(t *testing.T) {
+	t.Run("empty array", func(t *testing.T) {
+		res := slicendice.Reverse([]int{})
+
+		assert.Equal(t, 0, len(res))
+	})
+
+	t.Run("reverse the list", func(t *testing.T) {
+		inputs := []int{5, 3, 4, 8, 1}
+
+		outputs := slicendice.Reverse(inputs)
+
+		assert.Equal(t, len(inputs), len(outputs))
+		assert.Equal(t, []int{1, 8, 4, 3, 5}, outputs)
+	})
+}
