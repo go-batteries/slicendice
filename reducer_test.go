@@ -1,6 +1,7 @@
 package slicendice_test
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/go-batteries/slicendice"
@@ -61,5 +62,25 @@ func Test_ReduceArray(t *testing.T) {
 		result := slicendice.Reduce(input, onlyEvens, []int{})
 
 		assert.Equal(t, []int{2, 4, 6}, result)
+	})
+}
+
+func Test_ReduceMap(t *testing.T) {
+	t.Run("reduces an array to map", func(t *testing.T) {
+		inputs := []string{"a1", "b2", "c3"}
+
+		hashReduce := func(acc map[string]string, el string, _ int) map[string]string {
+			splits := strings.Split(el, "")
+			acc[splits[0]] = splits[1]
+			return acc
+		}
+
+		results := slicendice.Reduce(inputs, hashReduce, map[string]string{})
+
+		assert.Equal(t, map[string]string{
+			"a": "1",
+			"b": "2",
+			"c": "3",
+		}, results)
 	})
 }

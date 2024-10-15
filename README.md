@@ -13,6 +13,13 @@ A collection of commonly used higher order functions and data structures in go, 
 - [x] PermuteOrdered
 - [x] Combine
 
+Lazy:
+
+- [ ] Iter
+- [ ] Map
+- [ ] Filter
+- [ ] Reduce
+
 Extra datastrcutures:
 
 - [ ] Set
