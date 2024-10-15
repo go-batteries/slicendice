@@ -12,6 +12,8 @@ A collection of commonly used higher order functions and data structures in go, 
 - [x] NextPermute
 - [x] PermuteOrdered
 - [x] Combine
+- [x] Zip
+- [x] ZipPairs
 
 Lazy:
 
