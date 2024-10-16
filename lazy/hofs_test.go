@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_MapIter(t *testing.T) {
+func Test_MapIntoIter(t *testing.T) {
 	adder := func(el int, _ int) int {
 		return el * 2
 	}
@@ -19,7 +19,7 @@ func Test_MapIter(t *testing.T) {
 	}
 
 	t.Run("empty array, next return false", func(t *testing.T) {
-		mapper := lazy.Map([]int{}, adder)
+		mapper := lazy.MapIntoIter([]int{}, adder)
 
 		ok, _ := mapper.Next()
 		assert.False(t, ok)
@@ -27,7 +27,7 @@ func Test_MapIter(t *testing.T) {
 
 	t.Run("double item in array", func(t *testing.T) {
 		input := []int{1, 3, 4}
-		mapper := lazy.Map(input, adder)
+		mapper := lazy.MapIntoIter(input, adder)
 		counter := 0
 
 		for ok, res := mapper.Next(); ok; ok, res = mapper.Next() {
@@ -38,7 +38,7 @@ func Test_MapIter(t *testing.T) {
 
 	t.Run("greets people in array", func(t *testing.T) {
 		people := []string{"Dude", "Bro"}
-		mapper := lazy.Map(people, greeter)
+		mapper := lazy.MapIntoIter(people, greeter)
 
 		counter := 0
 
@@ -49,14 +49,14 @@ func Test_MapIter(t *testing.T) {
 	})
 }
 
-func Test_FilterIter(t *testing.T) {
+func Test_FilterIntoIter(t *testing.T) {
 	t.Run("filter items one by one by one", func(t *testing.T) {
 		input := []string{"a", "b", "a", "c"}
 		afilters := func(el string, _ int) bool {
 			return el == "a"
 		}
 
-		filterer := lazy.Filter(input, afilters)
+		filterer := lazy.FilterIntoIter(input, afilters)
 		res := []string{}
 
 		for ok, out := filterer.Next(); ok; ok, out = filterer.Next() {
@@ -67,11 +67,11 @@ func Test_FilterIter(t *testing.T) {
 	})
 }
 
-func Test_Take(t *testing.T) {
+func Test_TakeIntoIter(t *testing.T) {
 	t.Run("empty array takes none", func(t *testing.T) {
 		input := []int{}
 
-		iter := lazy.Take(input, 5)
+		iter := lazy.TakeIntoIter(input, 5)
 
 		ok, next := iter.Next()
 
@@ -81,7 +81,7 @@ func Test_Take(t *testing.T) {
 
 	t.Run("return all items when len(elements) < takeN", func(t *testing.T) {
 		input := []int{1, 2}
-		iter := lazy.Take(input, 5)
+		iter := lazy.TakeIntoIter(input, 5)
 
 		result := []int{}
 
@@ -95,7 +95,7 @@ func Test_Take(t *testing.T) {
 
 	t.Run("returns only takeN elements", func(t *testing.T) {
 		input := []int{1, 2, 3, 4, 5, 6}
-		iter := lazy.Take(input, 3)
+		iter := lazy.TakeIntoIter(input, 3)
 
 		result := []int{}
 
@@ -109,7 +109,7 @@ func Test_Take(t *testing.T) {
 	})
 }
 
-func Test_MapFromIter(t *testing.T) {
+func Test_Map(t *testing.T) {
 	inputs := []int{1, 2, 3, 4}
 
 	inputIter := lazy.ToSliceIter(inputs)
@@ -117,7 +117,7 @@ func Test_MapFromIter(t *testing.T) {
 		return fmt.Sprintf("%d:%d", el, i)
 	}
 
-	iter := lazy.MapFromIter(inputIter, adder)
+	iter := lazy.Map(inputIter, adder)
 
 	count := 0
 
@@ -131,7 +131,7 @@ func Test_MapFromIter(t *testing.T) {
 	}
 }
 
-func Test_FilterFromIter(t *testing.T) {
+func Test_Filter(t *testing.T) {
 	inputs := []int{1, 2, 3, 4}
 	idxMap := map[int]int{1: 0, 2: 1, 3: 2, 4: 3}
 
@@ -141,7 +141,7 @@ func Test_FilterFromIter(t *testing.T) {
 		return el%2 == 0
 	}
 
-	iter := lazy.FilterFromIter(inputIter, evens)
+	iter := lazy.Filter(inputIter, evens)
 	result := []int{}
 
 	for ok, next := iter.Next(); ok; ok, next = iter.Next() {
