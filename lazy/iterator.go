@@ -4,6 +4,11 @@ type Iter[E any] interface {
 	Next() (bool, E)
 }
 
+type ChainedIter[E, V any] interface {
+	Iter[E]
+	Chain(Iter[E]) Iter[V]
+}
+
 type SliceIterator[E any] struct {
 	elements []E
 
@@ -37,6 +42,39 @@ func NewFuncIterator[E any](nextFunc func() (bool, E)) *FuncIterator[E] {
 
 func (fiter *FuncIterator[E]) Next() (bool, E) {
 	return fiter.next()
+}
+
+type Transform[E, V any] func(E, int) (bool, V)
+
+type FuncIterator2[E, V any] struct {
+	iter        Iter[E]
+	transformer Transform[E, V]
+	index       int
+}
+
+func NewFuncIterator2[E, V any](iter Iter[E], transformer Transform[E, V]) *FuncIterator2[E, V] {
+	return &FuncIterator2[E, V]{
+		iter:        iter,
+		transformer: transformer,
+		index:       0,
+	}
+}
+
+func (fi *FuncIterator2[E, V]) Next() (bool, V) {
+	for {
+		ok, value := fi.iter.Next()
+		if !ok {
+			var zero V
+			return false, zero // No more elements to iterate
+		}
+
+		valid, newValue := fi.transformer(value, fi.index)
+		fi.index++
+
+		if valid {
+			return true, newValue
+		}
+	}
 }
 
 func ToSliceIter[E any](elements []E) *SliceIterator[E] {

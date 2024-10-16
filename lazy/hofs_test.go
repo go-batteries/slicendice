@@ -35,6 +35,17 @@ func Test_MapIter(t *testing.T) {
 		}
 	})
 
+	t.Run("double item in array", func(t *testing.T) {
+		input := []int{1, 3, 4}
+		mapper := lazy.Map2(input, adder)
+		counter := 0
+
+		for ok, res := mapper.Next(); ok; ok, res = mapper.Next() {
+			assert.Equal(t, adder(input[counter], 0), res)
+			counter += 1
+		}
+	})
+
 	t.Run("greets people in array", func(t *testing.T) {
 		people := []string{"Dude", "Bro"}
 		mapper := lazy.Map(people, greeter)
@@ -64,4 +75,21 @@ func Test_FilterIter(t *testing.T) {
 
 		assert.Equal(t, []string{"a", "a"}, res)
 	})
+
+	t.Run("filter items one by one by one", func(t *testing.T) {
+		input := []string{"a", "b", "a", "c"}
+		afilters := func(el string, _ int) bool {
+			return el == "a"
+		}
+
+		filterer := lazy.Filter2(input, afilters)
+		res := []string{}
+
+		for ok, out := filterer.Next(); ok; ok, out = filterer.Next() {
+			res = append(res, out)
+		}
+
+		assert.Equal(t, []string{"a", "a"}, res)
+	})
+
 }
