@@ -1,6 +1,7 @@
 package slicendice_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/go-batteries/slicendice"
@@ -26,5 +27,15 @@ func Test_Map(t *testing.T) {
 
 		assert.Equal(t, 4, len(result))
 		assert.Equal(t, []int{2, 4, 6, 8}, result)
+	})
+
+	t.Run("map from one type to another", func(t *testing.T) {
+		input := []int{1, 2, 3}
+		convert := func(el int, _ int) string {
+			return fmt.Sprintf("%d", el)
+		}
+
+		result := slicendice.Map(input, convert)
+		assert.Equal(t, []string{"1", "2", "3"}, result)
 	})
 }
