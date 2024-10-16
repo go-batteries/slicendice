@@ -71,7 +71,7 @@ func Test_TakeIntoIter(t *testing.T) {
 	t.Run("empty array takes none", func(t *testing.T) {
 		input := []int{}
 
-		iter := lazy.TakeIntoIter(input, 5)
+		iter := lazy.TakeIntoIter(5, input)
 
 		ok, next := iter.Next()
 
@@ -81,7 +81,7 @@ func Test_TakeIntoIter(t *testing.T) {
 
 	t.Run("return all items when len(elements) < takeN", func(t *testing.T) {
 		input := []int{1, 2}
-		iter := lazy.TakeIntoIter(input, 5)
+		iter := lazy.TakeIntoIter(5, input)
 
 		result := []int{}
 
@@ -95,7 +95,7 @@ func Test_TakeIntoIter(t *testing.T) {
 
 	t.Run("returns only takeN elements", func(t *testing.T) {
 		input := []int{1, 2, 3, 4, 5, 6}
-		iter := lazy.TakeIntoIter(input, 3)
+		iter := lazy.TakeIntoIter(3, input)
 
 		result := []int{}
 

@@ -34,7 +34,7 @@ func Filter[E any](iter Iter[E], mapper slicendice.FilterFunc[E]) Iter[E] {
 
 }
 
-func TakeIntoIter[E any](elements []E, n int) Iter[E] {
+func TakeIntoIter[E any](n int, elements []E) Iter[E] {
 	var zero E
 
 	iter := ToSliceIter(elements)
@@ -49,7 +49,7 @@ func TakeIntoIter[E any](elements []E, n int) Iter[E] {
 	})
 }
 
-func Take[E any](iter Iter[E], n int) Iter[E] {
+func Take[E any](n int, iter Iter[E]) Iter[E] {
 	var zero E
 
 	return NewFuncIterator(iter, func(e E, _ int) (bool, E) {
