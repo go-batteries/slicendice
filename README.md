@@ -14,6 +14,7 @@ A collection of commonly used higher order functions and data structures in go, 
 - [x] Combine
 - [x] Zip
 - [x] ZipPairs
+- [x] Batch
 
 Lazy:
 
