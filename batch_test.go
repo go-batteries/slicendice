@@ -36,3 +36,16 @@ func Test_Batch(t *testing.T) {
 		)
 	})
 }
+
+func Test_Repeat(t *testing.T) {
+	t.Run("times == 0, return empty", func(t *testing.T) {
+		repeated := slicendice.Repeat('?', 0)
+		assert.Equal(t, 0, len(repeated))
+	})
+
+	t.Run("times == n, returns n items array", func(t *testing.T) {
+		repeated := slicendice.Repeat("?", 5)
+		assert.Equal(t, 5, len(repeated))
+		assert.Equal(t, []string{"?", "?", "?", "?", "?"}, repeated)
+	})
+}

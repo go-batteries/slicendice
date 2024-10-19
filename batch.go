@@ -31,3 +31,17 @@ func Batch(total int64, groups int) [][]int {
 	}
 	return batchIndexs
 }
+
+func Repeat[E any](item E, times int) []E {
+	if times <= 0 {
+		return []E{}
+	}
+
+	result := make([]E, times)
+
+	for i := 0; i < times; i++ {
+		result[i] = item
+	}
+
+	return result
+}
