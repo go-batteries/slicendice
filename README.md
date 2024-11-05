@@ -1,7 +1,5 @@
 # slice and dice
 
-<img swith=200 height=200 alt="logo" src="./slicendice.jpg" />
-
 A collection of commonly used higher order functions and data structures in go, like itertools.
 
 - [x] Map
