@@ -17,6 +17,8 @@ A collection of commonly used higher order functions and data structures in go, 
 - [x] Zip
 - [x] ZipPairs
 - [x] Batch
+- [ ] Join
+- [ ] Curry
 
 Lazy:
 
