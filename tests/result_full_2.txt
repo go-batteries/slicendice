@@ -1,0 +1,20 @@
+goos: linux
+goarch: amd64
+pkg: github.com/go-batteries/slicendice/tests
+cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+BenchmarkReverseFull2-8   	   84489	     14020 ns/op
+PASS
+
+ Performance counter stats for './reverse_bench -test.bench=BenchmarkReverseFull2':
+
+         4,492,213      cache-references:u                                                    
+         1,929,948      cache-misses:u                   #   42.96% of all cache refs         
+     1,479,566,961      L1-dcache-loads:u                                                     
+       185,749,077      L1-dcache-load-misses:u          #   12.55% of all L1-dcache accesses 
+
+       2.183827356 seconds time elapsed
+
+       2.164595000 seconds user
+       0.029629000 seconds sys
+
+
