@@ -1,21 +1,22 @@
-goos: linux
-goarch: amd64
-pkg: github.com/go-batteries/slicendice/tests
-cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
-BenchmarkReverseFull-8    	  146010	      7374 ns/op
-BenchmarkReverseFull2-8   	  148756	      8210 ns/op
-PASS
+./reverse_bench: Interrupt
 
- Performance counter stats for './reverse_bench -test.bench=BenchmarkReverseFull':
+ Performance counter stats for './reverse_bench -test.bench=BenchmarkReverseDynamicFull':
 
-         4,272,690      cache-references:u                                                    
-         2,580,550      cache-misses:u                   #   60.40% of all cache refs         
-     3,152,381,158      L1-dcache-loads:u                                                     
-       394,440,797      L1-dcache-load-misses:u          #   12.51% of all L1-dcache accesses 
+     8,588,338,110      cache-references:u                                                      (45.45%)
+        88,970,092      cache-misses:u                   #    1.04% of all cache refs           (45.48%)
+    34,349,437,138      L1-dcache-loads:u                                                       (45.47%)
+     4,291,720,334      L1-dcache-load-misses:u          #   12.49% of all L1-dcache accesses   (45.49%)
+       227,807,546      LLC-loads:u                                                             (36.43%)
+         4,698,368      LLC-load-misses:u                #    2.06% of all L1-icache accesses   (36.43%)
+           356,309      branch-misses:u                  #    0.00% of all branches             (36.41%)
+    51,451,834,143      branches:u                                                              (36.34%)
+         1,746,481      L1-icache-load-misses:u                                                 (36.34%)
+    59,262,478,859      cycles:u                                                                (36.35%)
+   206,163,287,822      instructions:u                   #    3.48  insn per cycle              (45.41%)
 
-       2.470455354 seconds time elapsed
+      16.399790476 seconds time elapsed
 
-       2.452438000 seconds user
-       0.023122000 seconds sys
+      16.292930000 seconds user
+       0.059709000 seconds sys
 
 

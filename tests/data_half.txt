@@ -1,0 +1,2 @@
+Benchmark	CacheReferences	CacheMisses	L1DcacheLoads	L1DcacheMisses	LLCLoads	LLCMisses	Branches	Cycles	Instructions
+Performance	2465208	1633000	1879060321	235859289	276436	140276	1910240276	2427857472	11316695314

@@ -1,0 +1,30 @@
+goos: linux
+goarch: amd64
+pkg: github.com/go-batteries/slicendice/tests
+cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+BenchmarkReverseDynamicFull/ArraySize=1000-8         	  279106	    152253 ns/op
+BenchmarkReverseDynamicFull/ArraySize=10000-8        	  252391	    125565 ns/op
+BenchmarkReverseDynamicFull/ArraySize=100000-8       	  273230	    140080 ns/op
+BenchmarkReverseDynamicFull/ArraySize=1000000-8      	  228936	    223247 ns/op
+PASS
+
+ Performance counter stats for './reverse_bench -test.bench=BenchmarkReverseDynamicFull':
+
+    66,521,152,504      cache-references:u                                                      (54.54%)
+     1,906,065,494      cache-misses:u                   #    2.87% of all cache refs           (54.56%)
+   269,042,150,174      L1-dcache-loads:u                                                       (54.56%)
+    33,670,734,733      L1-dcache-load-misses:u          #   12.52% of all L1-dcache accesses   (54.59%)
+     1,628,483,290      LLC-loads:u                                                             (36.40%)
+        78,587,417      LLC-load-misses:u                #    4.83% of all L1-icache accesses   (36.37%)
+         2,703,491      branch-misses:u                  #    0.00% of all branches             (36.36%)
+   403,212,869,163      branches:u                                                              (36.36%)
+        14,548,665      L1-icache-load-misses:u                                                 (36.35%)
+   490,292,688,171      cycles:u                                                                (45.45%)
+ 1,614,240,594,864      instructions:u                   #    3.29  insn per cycle              (54.54%)
+
+     163.769933238 seconds time elapsed
+
+     162.543191000 seconds user
+       0.565142000 seconds sys
+
+
