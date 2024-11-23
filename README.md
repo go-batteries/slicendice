@@ -17,6 +17,7 @@ A collection of commonly used higher order functions and data structures in go, 
 - [x] Batch
 - [ ] Join
 - [ ] Curry
+- [x] RepeatFunc
 
 Lazy:
 
