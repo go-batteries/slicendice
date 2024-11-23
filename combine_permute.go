@@ -180,6 +180,46 @@ func NextPermute[E cmp.Ordered](elements []E) (bool, []E) {
 	return true, copied
 }
 
+type Comparator[E cmp.Ordered] func(prev, next E) bool
+
+// NextPermuteFunc, works like NextPermute
+// but allows you to provide a comparator func
+// default should be `>=`
+func NextPermuteFunc[E cmp.Ordered](elements []E, comparator Comparator[E]) (bool, []E) {
+	n := len(elements)
+	if n == 0 {
+		return true, []E{}
+	}
+
+	copied := make([]E, n)
+
+	copy(copied, elements)
+
+	// Step 1
+	k := n - 2
+	for k >= 0 && comparator(copied[k], copied[k+1]) {
+		k -= 1
+	}
+
+	if k < 0 {
+		return false, copied
+	}
+
+	// Step 2
+	l := n - 1
+	for l >= 0 && comparator(copied[k], copied[l]) {
+		l -= 1
+	}
+
+	copied[k], copied[l] = copied[l], copied[k]
+
+	// Step 3
+	reversedPart := Reverse(copied[k+1:])
+	copied = append(copied[:k+1], reversedPart...)
+
+	return true, copied
+}
+
 func Reverse[E any](elements []E) []E {
 	n := len(elements)
 

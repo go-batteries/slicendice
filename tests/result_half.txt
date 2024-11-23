@@ -2,26 +2,26 @@ goos: linux
 goarch: amd64
 pkg: github.com/go-batteries/slicendice/tests
 cpu: Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
-BenchmarkReverseHalf-8   	  190168	      6459 ns/op
+BenchmarkReverseHalf-8   	  190168	      5938 ns/op
 PASS
 
  Performance counter stats for './reverse_bench -test.bench=BenchmarkReverseHalf':
 
-         2,465,208      cache-references:u                                                      (54.58%)
-         1,633,000      cache-misses:u                   #   66.24% of all cache refs           (54.97%)
-     1,879,060,321      L1-dcache-loads:u                                                       (55.13%)
-       235,859,289      L1-dcache-load-misses:u          #   12.55% of all L1-dcache accesses   (55.24%)
-           276,436      LLC-loads:u                                                             (37.32%)
-           140,276      LLC-load-misses:u                #   50.74% of all L1-icache accesses   (36.47%)
-           195,524      branch-misses:u                  #    0.01% of all branches             (36.25%)
-     1,910,240,276      branches:u                                                              (36.14%)
-            66,464      L1-icache-load-misses:u                                                 (36.03%)
-     2,427,857,472      cycles:u                                                                (45.65%)
-    11,316,695,314      instructions:u                   #    4.66  insn per cycle              (54.64%)
+         2,091,237      cache-references:u                                                      (54.42%)
+         1,535,745      cache-misses:u                   #   73.44% of all cache refs           (55.03%)
+     1,876,225,405      L1-dcache-loads:u                                                       (55.28%)
+       234,732,539      L1-dcache-load-misses:u          #   12.51% of all L1-dcache accesses   (55.49%)
+           243,304      LLC-loads:u                                                             (37.74%)
+           130,462      LLC-load-misses:u                #   53.62% of all L1-icache accesses   (36.50%)
+           198,582      branch-misses:u                  #    0.01% of all branches             (36.24%)
+     1,912,679,352      branches:u                                                              (36.07%)
+            58,943      L1-icache-load-misses:u                                                 (35.94%)
+     2,440,494,638      cycles:u                                                                (45.53%)
+    11,340,624,609      instructions:u                   #    4.65  insn per cycle              (54.48%)
 
-       1.233321728 seconds time elapsed
+       1.138430212 seconds time elapsed
 
-       1.231357000 seconds user
-       0.003229000 seconds sys
+       1.120415000 seconds user
+       0.019609000 seconds sys
 
 
