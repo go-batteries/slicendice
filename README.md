@@ -18,6 +18,7 @@ A collection of commonly used higher order functions and data structures in go, 
 - [ ] Join
 - [ ] Curry
 - [x] RepeatFunc
+- [x] Splice
 
 Lazy:
 

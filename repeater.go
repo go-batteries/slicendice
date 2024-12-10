@@ -42,3 +42,25 @@ func RepeatFuncWith(n int, fn interface{}, args ...interface{}) ([]interface{}, 
 
 	return returnValues, nil
 }
+
+func Splice[E any](slice []E, start, deleteCount int, insert ...E) []E {
+	if start < 0 {
+		start = 0
+	}
+
+	if start > len(slice) {
+		start = len(slice)
+	}
+
+	end := start + deleteCount
+	if end > len(slice) {
+		end = len(slice)
+	}
+
+	front := append([]E(nil), slice[:start]...)
+	middle := append([]E(nil), insert...)
+	back := append([]E(nil), slice[end:]...)
+
+	// Combine them to form a new slice
+	return append(append(front, middle...), back...)
+}
