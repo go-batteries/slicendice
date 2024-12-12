@@ -2,6 +2,7 @@ package slicendice
 
 import (
 	"fmt"
+	"log"
 	"reflect"
 )
 
@@ -63,4 +64,22 @@ func Splice[E any](slice []E, start, deleteCount int, insert ...E) []E {
 
 	// Combine them to form a new slice
 	return append(append(front, middle...), back...)
+}
+
+func At[A any](slice []A, index int) A {
+	n_slice := len(slice)
+
+	if index == -1 && n_slice == 0 {
+		index = 0
+	}
+
+	if index < 0 {
+		index = n_slice + index
+	}
+
+	if index >= n_slice {
+		log.Fatal("index out of bounds")
+	}
+
+	return slice[index]
 }

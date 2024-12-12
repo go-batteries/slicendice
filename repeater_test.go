@@ -30,3 +30,22 @@ func Test_Splice(t *testing.T) {
 		t.Fatalf("arr and new array doesn't match. got %v, expected %v", arr, newArr)
 	}
 }
+
+func Test_At(t *testing.T) {
+	arr := []int{1}
+
+	el := slicendice.At(arr, -1)
+	ell := slicendice.At(arr, 0)
+
+	if el != ell {
+		t.Fatalf("expected %v to match %v", el, ell)
+	}
+
+	arr = []int{1, 2, 3, 4, 5}
+	el = slicendice.At(arr, -2)
+	ell = slicendice.At(arr, 3)
+
+	if el != ell {
+		t.Fatalf("expected %v to match %v", el, ell)
+	}
+}

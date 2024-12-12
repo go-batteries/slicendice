@@ -19,6 +19,7 @@ A collection of commonly used higher order functions and data structures in go, 
 - [ ] Curry
 - [x] RepeatFunc
 - [x] Splice
+- [x] At, supports both positive and negative index
 
 Lazy:
 
