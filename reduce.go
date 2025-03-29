@@ -30,3 +30,15 @@ func Reduce[E, V any](elements []E, reducer ReducerFunc[E, V], accumulator V) V 
 
 	return accumulator
 }
+
+func Find[E any](elements []E, finder func(e E) bool) (E, int) {
+	var v E
+
+	for i, el := range elements {
+		if ok := finder(el); ok {
+			return el, i
+		}
+	}
+
+	return v, -1
+}
