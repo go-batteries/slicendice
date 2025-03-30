@@ -84,3 +84,21 @@ func Test_ReduceMap(t *testing.T) {
 		}, results)
 	})
 }
+
+func Test_MapFilter(t *testing.T) {
+	t.Run("filters odd func and multiples by 2", func(t *testing.T) {
+		inputs := []int{1, 12, 3, 14, 5, 16}
+
+		mapfilterFunc := func(v int, _ int) (int, bool) {
+			if v%2 != 0 {
+				return v * 2, true
+			}
+
+			return v, false
+		}
+
+		results := slicendice.MapFilter(inputs, mapfilterFunc)
+
+		assert.Equal(t, []int{2, 6, 10}, results)
+	})
+}

@@ -31,6 +31,7 @@ func Reduce[E, V any](elements []E, reducer ReducerFunc[E, V], accumulator V) V 
 	return accumulator
 }
 
+// Find: the first element matching the criteria
 func Find[E any](elements []E, finder func(e E, i int) bool) (E, int) {
 	var v E
 
@@ -41,4 +42,41 @@ func Find[E any](elements []E, finder func(e E, i int) bool) (E, int) {
 	}
 
 	return v, -1
+}
+
+func FindAll[E any](elements []E, finder func(e E, i int) bool) ([]E, bool) {
+	v := []E{}
+
+	for i, el := range elements {
+		if ok := finder(el, i); ok {
+			v = append(v, el)
+		}
+	}
+
+	return v, len(v) > 0
+}
+
+// MapFilterFunc: receives each item from an collection of elements
+// and returns a transformed value and wether to include the result
+// It takes two parameters:
+// - element: the current element of type E being processed.
+// - index: the index of the current element in the collection.
+// It returns the transformed element of type V and if transformation was skipped
+type MapFilterFunc[E, V any] func(element E, index int) (V, bool)
+
+// MapFilter: combines a map and a filter
+func MapFilter[E, V any](elements []E, mapfilter MapFilterFunc[E, V]) []V {
+	if len(elements) == 0 {
+		return []V{}
+	}
+
+	results := []V{}
+
+	for i, el := range elements {
+		if res, ok := mapfilter(el, i); ok {
+			results = append(results, res)
+		}
+	}
+
+	return results
 }
